@@ -34,4 +34,16 @@ public class StringTest {
         //then
         assertThat(split).containsExactly("1");
     }
+
+    @Test
+    public void substring() throws Exception {
+        //given
+        String actual = "(1,2)";
+
+        //when
+        String substring = actual.substring(1, 4);
+
+        //then
+        assertThat(substring).isEqualTo("1,2");
+    }
 }
