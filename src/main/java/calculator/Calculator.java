@@ -9,6 +9,6 @@ public class Calculator {
     }
 
     public void start() {
-        String value = view.inputView();
+        UserInput userInput = new UserInput(view.inputView());
     }
 }
