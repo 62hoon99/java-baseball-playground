@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
@@ -35,14 +36,14 @@ public class SetTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3})
-    public void parameterizedTest(Integer num) throws Exception {
+    @CsvSource(value = {"1:true", "2:true", "3:true", "4:false", "5:false"}, delimiter = ':')
+    public void parameterizedTest(Integer num, Boolean expected) throws Exception {
         //given
 
         //when
 
         //then
-        assertThat(numbers.contains(num)).isTrue();
+        assertThat(numbers.contains(num)).isEqualTo(expected);
     }
 
 }
