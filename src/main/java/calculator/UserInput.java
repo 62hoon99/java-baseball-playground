@@ -12,6 +12,7 @@ public class UserInput {
         validateInvalidCharacter(inputValues);
         validateDivideZero(inputValues);
         validateAlternatingCharacters(inputValues);
+        validateLastValueNonNumeric(inputValues);
         this.values = inputValues;
     }
 
@@ -33,16 +34,15 @@ public class UserInput {
     }
 
     private boolean hasInvalidCharacter(String s) {
-        if (s.equals("+") || s.equals("-") || s.equals("/") || s.equals("*")) {
+        if (!isOperator(s)) {
             return false;
         }
 
-        try {
-            Integer.parseInt(s);
+        if (!isDigit(s)) {
             return false;
-        } catch (Exception e) {
-            return true;
         }
+
+        return true;
     }
 
     private void validateDivideZero(String[] inputValues) {
