@@ -10,6 +10,7 @@ public class UserInput {
         String[] inputValues = value.split(" ");
         validateFirstValueNonNumeric(inputValues);
         validateInvalidCharacter(inputValues);
+        validateDivideZero(inputValues);
         this.values = inputValues;
     }
 
@@ -40,6 +41,18 @@ public class UserInput {
             return false;
         } catch (Exception e) {
             return true;
+        }
+    }
+
+    private void validateDivideZero(String[] inputValues) {
+        for (int i = 0; i < inputValues.length - 1; i++) {
+            checkDividedZero(inputValues[i], inputValues[i + 1]);
+        }
+    }
+
+    private void checkDividedZero(String front, String back) {
+        if (front.equals("/") && back.equals("0")) {
+            throw new IllegalArgumentException("0으로 나누기는 불가능 합니다.");
         }
     }
 }
