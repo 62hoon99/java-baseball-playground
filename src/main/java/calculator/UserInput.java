@@ -88,4 +88,12 @@ public class UserInput {
             return false;
         }
     }
+
+    private void validateLastValueNonNumeric(String[] inputValues) {
+        try {
+            Integer.parseInt(inputValues[inputValues.length - 1]);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("마지막 글자는 숫자만 가능합니다.");
+        }
+    }
 }
