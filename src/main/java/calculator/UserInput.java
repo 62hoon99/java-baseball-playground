@@ -11,6 +11,7 @@ public class UserInput {
         validateFirstValueNonNumeric(inputValues);
         validateInvalidCharacter(inputValues);
         validateDivideZero(inputValues);
+        validateAlternatingCharacters(inputValues);
         this.values = inputValues;
     }
 
@@ -53,6 +54,38 @@ public class UserInput {
     private void checkDividedZero(String front, String back) {
         if (front.equals("/") && back.equals("0")) {
             throw new IllegalArgumentException("0으로 나누기는 불가능 합니다.");
+        }
+    }
+
+    private void validateAlternatingCharacters(String[] inputValues) {
+        for (int i = 0; i < inputValues.length; i++) {
+            checkAlternatingCharacters(inputValues[i], inputValues[i + 1]);
+        }
+    }
+
+    private void checkAlternatingCharacters(String front, String back) {
+        if (isOperator(front) && isOperator(back)) {
+            throw new IllegalArgumentException("연산자는 연속으로 올 수 없습니다.");
+        }
+
+        if (isDigit(front) && isDigit(back)) {
+            throw new IllegalArgumentException("숫자는 연속으로 올 수 없습니다.");
+        }
+    }
+
+    private boolean isOperator(String operator) {
+        if (operator.equals("+") || operator.equals("-") || operator.equals("/") || operator.equals("*")) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isDigit(String digit) {
+        try {
+            Integer.parseInt(digit);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
