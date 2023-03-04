@@ -28,6 +28,15 @@ class UserInputTest {
                 .hasMessage("첫 글자는 숫자만 가능합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"a + 1", "1 a 1"})
+    @DisplayName("입력값 구성 검증 기능")
+    public void validateInvalidCharacter(String inputValue) throws Exception {
+        assertThatThrownBy(() -> userInputValidator.validateInvalidCharacter(splitValue(inputValue)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자와 연산 문자로만 이루어져야 합니다.");
+    }
+
     private String[] splitValue(String value) {
         return value.split(" ");
     }
