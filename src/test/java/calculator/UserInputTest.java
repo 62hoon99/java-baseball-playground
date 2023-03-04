@@ -46,6 +46,24 @@ class UserInputTest {
                 .hasMessage("0으로 나누기는 불가능 합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1 + / 3", " 1 * 3 + + 4"})
+    @DisplayName("연산자가 연속해서 나오는 경우 검증 기능")
+    public void validateContinueOperators(String inputValue) throws Exception {
+        assertThatThrownBy(() -> userInputValidator.validateAlternatingCharacters(splitValue(inputValue)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("연산자는 연속으로 올 수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1 1 + 1", "2 + 3 4"})
+    @DisplayName("숫자가 연속해서 나오는 경우 검증 기능")
+    public void validateContinueNumbers(String inputValue) throws Exception {
+        assertThatThrownBy(() -> userInputValidator.validateAlternatingCharacters(splitValue(inputValue)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("숫자는 연속으로 올 수 없습니다.");
+    }
+
     private String[] splitValue(String value) {
         return value.split(" ");
     }
