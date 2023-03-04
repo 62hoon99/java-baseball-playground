@@ -55,16 +55,10 @@ public class UserInput {
     }
 
     private boolean hasInvalidCharacter(String s) {
-        // 잘못함
-        if (!isOperator(s)) {
-            return false;
+        if (!isOperator(s) && !isDigit(s)) {
+            return true;
         }
-
-        if (!isDigit(s)) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     private void validateDivideZero(String[] inputValues) {
