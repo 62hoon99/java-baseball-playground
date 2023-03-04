@@ -37,6 +37,15 @@ class UserInputTest {
                 .hasMessage("숫자와 연산 문자로만 이루어져야 합니다.");
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"3 / 0"})
+    @DisplayName("입력값이 0으로 나누어지는지 검증 기능")
+    public void validateDivideZero(String inputValue) throws Exception {
+        assertThatThrownBy(() -> userInputValidator.validateDivideZero(splitValue(inputValue)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("0으로 나누기는 불가능 합니다.");
+    }
+
     private String[] splitValue(String value) {
         return value.split(" ");
     }
