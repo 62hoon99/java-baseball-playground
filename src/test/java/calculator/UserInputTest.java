@@ -1,6 +1,5 @@
 package calculator;
 
-import calculator.userInput.UserInput;
 import calculator.userInput.userInputValidator.UserInputValidator;
 import calculator.userInput.userInputValidator.UserInputValidatorImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -62,6 +61,15 @@ class UserInputTest {
         assertThatThrownBy(() -> userInputValidator.validateAlternatingCharacters(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자는 연속으로 올 수 없습니다.");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1 + 3 /", "2 + 3 +"})
+    @DisplayName("숫자가 연속해서 나오는 경우 검증 기능")
+    public void validateLastValueNonNumeric(String inputValue) throws Exception {
+        assertThatThrownBy(() -> userInputValidator.validateLastValueNonNumeric(splitValue(inputValue)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("마지막 글자는 숫자만 가능합니다.");
     }
 
     private String[] splitValue(String value) {
