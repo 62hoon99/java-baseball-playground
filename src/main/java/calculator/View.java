@@ -14,4 +14,7 @@ public class View {
         this.scanner = new Scanner(System.in);
     }
 
+    public void outputView(String value) {
+        System.out.println(value);
+    }
 }

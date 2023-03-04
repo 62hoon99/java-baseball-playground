@@ -10,5 +10,7 @@ public class Calculator {
 
     public void start() {
         UserInput userInput = new UserInput(view.inputView());
+        Integer result = userInput.calculate();
+        view.outputView(Integer.toString(result));
     }
 }
