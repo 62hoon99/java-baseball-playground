@@ -23,7 +23,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"a + 1", "+ 1"})
     @DisplayName("입력값 첫 글자 검증 기능")
-    public void validateFirstValueNonNumeric(String inputValue) throws Exception {
+    public void validateFirstValueNonNumeric(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateFirstValueNonNumeric(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("첫 글자는 숫자만 가능합니다.");
@@ -32,7 +32,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"a + 1", "1 a 1"})
     @DisplayName("입력값 구성 검증 기능")
-    public void validateInvalidCharacter(String inputValue) throws Exception {
+    public void validateInvalidCharacter(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateInvalidCharacter(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자와 연산 문자로만 이루어져야 합니다.");
@@ -41,7 +41,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"3 / 0"})
     @DisplayName("입력값이 0으로 나누어지는지 검증 기능")
-    public void validateDivideZero(String inputValue) throws Exception {
+    public void validateDivideZero(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateDivideZero(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("0으로 나누기는 불가능 합니다.");
@@ -50,7 +50,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 + / 3", " 1 * 3 + + 4"})
     @DisplayName("연산자가 연속해서 나오는 경우 검증 기능")
-    public void validateContinueOperators(String inputValue) throws Exception {
+    public void validateContinueOperators(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateAlternatingCharacters(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("연산자는 연속으로 올 수 없습니다.");
@@ -59,7 +59,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 1 + 1", "2 + 3 4"})
     @DisplayName("숫자가 연속해서 나오는 경우 검증 기능")
-    public void validateContinueNumbers(String inputValue) throws Exception {
+    public void validateContinueNumbers(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateAlternatingCharacters(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("숫자는 연속으로 올 수 없습니다.");
@@ -68,7 +68,7 @@ class UserInputTest {
     @ParameterizedTest
     @ValueSource(strings = {"1 + 3 /", "2 + 3 +"})
     @DisplayName("마지막 글자가 숫자인 경우 검증 기능")
-    public void validateLastValueNonNumeric(String inputValue) throws Exception {
+    public void validateLastValueNonNumeric(String inputValue) {
         assertThatThrownBy(() -> userInputValidator.validateLastValueNonNumeric(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("마지막 글자는 숫자만 가능합니다.");
@@ -76,7 +76,7 @@ class UserInputTest {
 
     @Test
     @DisplayName("정상 동작 확인")
-    public void normalOperation() throws Exception {
+    public void normalOperation() {
         //given
         UserInput userInput = new UserInput("2 + 3 * 4 / 2");
         //when
