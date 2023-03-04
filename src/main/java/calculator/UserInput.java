@@ -80,7 +80,7 @@ public class UserInput {
     }
 
     private void validateAlternatingCharacters(String[] inputValues) {
-        for (int i = 0; i < inputValues.length; i++) {
+        for (int i = 0; i < inputValues.length - 1; i++) {
             checkAlternatingCharacters(inputValues[i], inputValues[i + 1]);
         }
     }
