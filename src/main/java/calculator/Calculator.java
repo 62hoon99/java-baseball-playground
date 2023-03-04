@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.userInput.UserInput;
+
 public class Calculator {
 
     private final View view;

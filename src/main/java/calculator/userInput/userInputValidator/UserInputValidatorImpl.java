@@ -1,43 +1,13 @@
-package calculator;
+package calculator.userInput.userInputValidator;
+
+import calculator.userInput.userInputValidator.UserInputValidator;
 
 import java.util.Arrays;
 
-public class UserInput {
+public class UserInputValidatorImpl implements UserInputValidator {
 
-    private final String[] values;
-
-    public UserInput(String value) {
-        String[] inputValues = value.split(" ");
-        validateFirstValueNonNumeric(inputValues);
-        validateInvalidCharacter(inputValues);
-        validateDivideZero(inputValues);
-        validateAlternatingCharacters(inputValues);
-        validateLastValueNonNumeric(inputValues);
-        this.values = inputValues;
-    }
-
-    public Integer calculate() {
-        Integer preNumber = Integer.parseInt(values[0]);
-        for (int i = 1; i < values.length; i += 2) {
-            preNumber = calculate(preNumber, values[i], Integer.parseInt(values[i + 1]));
-        }
-        return preNumber;
-    }
-
-    private Integer calculate(Integer preNumber, String operator, Integer postNumber) {
-        if (operator.equals("+")) {
-            return preNumber + postNumber;
-        }
-        if (operator.equals("-")) {
-            return preNumber - postNumber;
-        }
-        if (operator.equals("/")) {
-            return preNumber / postNumber;
-        }
-        return preNumber * postNumber;
-    }
-
-    private void validateFirstValueNonNumeric(String[] inputValues) {
+    @Override
+    public void validateFirstValueNonNumeric(String[] inputValues) {
         try {
             Integer.parseInt(inputValues[0]);
         } catch (Exception e) {
@@ -45,7 +15,8 @@ public class UserInput {
         }
     }
 
-    private void validateInvalidCharacter(String[] inputValues) {
+    @Override
+    public void validateInvalidCharacter(String[] inputValues) {
         boolean match = Arrays.stream(inputValues)
                 .noneMatch(this::hasInvalidCharacter);
 
@@ -61,7 +32,8 @@ public class UserInput {
         return false;
     }
 
-    private void validateDivideZero(String[] inputValues) {
+    @Override
+    public void validateDivideZero(String[] inputValues) {
         for (int i = 0; i < inputValues.length - 1; i++) {
             checkDividedZero(inputValues[i], inputValues[i + 1]);
         }
@@ -73,7 +45,8 @@ public class UserInput {
         }
     }
 
-    private void validateAlternatingCharacters(String[] inputValues) {
+    @Override
+    public void validateAlternatingCharacters(String[] inputValues) {
         for (int i = 0; i < inputValues.length - 1; i++) {
             checkAlternatingCharacters(inputValues[i], inputValues[i + 1]);
         }
@@ -105,7 +78,8 @@ public class UserInput {
         }
     }
 
-    private void validateLastValueNonNumeric(String[] inputValues) {
+    @Override
+    public void validateLastValueNonNumeric(String[] inputValues) {
         try {
             Integer.parseInt(inputValues[inputValues.length - 1]);
         } catch (Exception e) {
