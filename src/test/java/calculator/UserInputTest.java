@@ -1,9 +1,11 @@
 package calculator;
 
+import calculator.userInput.UserInput;
 import calculator.userInput.userInputValidator.UserInputValidator;
 import calculator.userInput.userInputValidator.UserInputValidatorImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -65,11 +67,22 @@ class UserInputTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"1 + 3 /", "2 + 3 +"})
-    @DisplayName("숫자가 연속해서 나오는 경우 검증 기능")
+    @DisplayName("마지막 글자가 숫자인 경우 검증 기능")
     public void validateLastValueNonNumeric(String inputValue) throws Exception {
         assertThatThrownBy(() -> userInputValidator.validateLastValueNonNumeric(splitValue(inputValue)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("마지막 글자는 숫자만 가능합니다.");
+    }
+
+    @Test
+    @DisplayName("정상 동작 확인")
+    public void normalOperation() throws Exception {
+        //given
+        UserInput userInput = new UserInput("2 + 3 * 4 / 2");
+        //when
+
+        //then
+        assertThat(userInput.calculate()).isEqualTo(10);
     }
 
     private String[] splitValue(String value) {
