@@ -16,6 +16,27 @@ public class UserInput {
         this.values = inputValues;
     }
 
+    public Integer calculate() {
+        Integer preNumber = Integer.parseInt(values[0]);
+        for (int i = 1; i < values.length; i += 2) {
+            preNumber = calculate(preNumber, values[i], Integer.parseInt(values[i + 1]));
+        }
+        return preNumber;
+    }
+
+    private Integer calculate(Integer preNumber, String operator, Integer postNumber) {
+        if (operator.equals("+")) {
+            return preNumber + postNumber;
+        }
+        if (operator.equals("-")) {
+            return preNumber - postNumber;
+        }
+        if (operator.equals("/")) {
+            return preNumber / postNumber;
+        }
+        return preNumber * postNumber;
+    }
+
     private void validateFirstValueNonNumeric(String[] inputValues) {
         try {
             Integer.parseInt(inputValues[0]);
@@ -34,6 +55,7 @@ public class UserInput {
     }
 
     private boolean hasInvalidCharacter(String s) {
+        // 잘못함
         if (!isOperator(s)) {
             return false;
         }
