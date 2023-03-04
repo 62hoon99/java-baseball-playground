@@ -13,12 +13,16 @@ public class UserInput {
         userInputValidator = new UserInputValidatorImpl();
 
         String[] inputValues = value.split(" ");
+        validateValue(inputValues);
+        this.values = inputValues;
+    }
+
+    private void validateValue(String[] inputValues) {
         userInputValidator.validateFirstValueNonNumeric(inputValues);
         userInputValidator.validateInvalidCharacter(inputValues);
         userInputValidator.validateDivideZero(inputValues);
         userInputValidator.validateAlternatingCharacters(inputValues);
         userInputValidator.validateLastValueNonNumeric(inputValues);
-        this.values = inputValues;
     }
 
     public Integer calculate() {

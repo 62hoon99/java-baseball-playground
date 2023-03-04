@@ -1,7 +1,5 @@
 package calculator.userInput.userInputValidator;
 
-import calculator.userInput.userInputValidator.UserInputValidator;
-
 import java.util.Arrays;
 
 public class UserInputValidatorImpl implements UserInputValidator {
