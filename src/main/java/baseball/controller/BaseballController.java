@@ -28,6 +28,7 @@ public class BaseballController {
                 outputView.result(gameResult);
 
                 if (gameResult.getComplete()) {
+                    outputView.complete();
                     break;
                 }
             } catch (IllegalArgumentException e) {
