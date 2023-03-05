@@ -61,7 +61,10 @@ public class AnswerNumberImpl implements AnswerNumber {
 
     @Override
     public Boolean isNothing(String number) {
-        return null;
+        if (countStrikes(number).equals(0) && countBalls(number).equals(0)) {
+            return true;
+        }
+        return false;
     }
 
     private String[] splitInput(String input) {
