@@ -26,12 +26,12 @@ public class InputValidatorImpl implements InputValidator {
     }
 
     @Override
-    public void validateDistinctNumbers(String input) {
+    public void validateDistinctInput(String input) {
 
     }
 
     @Override
-    public void validateThreeDigitNumber(String input) {
+    public void validateThreeInput(String input) {
 
     }
 

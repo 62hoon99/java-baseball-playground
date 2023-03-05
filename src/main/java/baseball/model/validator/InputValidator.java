@@ -4,7 +4,7 @@ public interface InputValidator {
 
     void validateNaturalNumbers(String input);
 
-    void validateDistinctNumbers(String input);
+    void validateDistinctInput(String input);
 
-    void validateThreeDigitNumber(String input);
+    void validateThreeInput(String input);
 }
