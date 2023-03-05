@@ -7,4 +7,6 @@ public interface AnswerNumber {
     Integer countBalls(String number);
 
     Boolean isNothing(String number);
+
+    Boolean isComplete(String number);
 }

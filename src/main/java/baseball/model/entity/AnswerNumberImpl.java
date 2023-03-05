@@ -67,6 +67,14 @@ public class AnswerNumberImpl implements AnswerNumber {
         return false;
     }
 
+    @Override
+    public Boolean isComplete(String number) {
+        if (countStrikes(number).equals(limit)) {
+            return true;
+        }
+        return false;
+    }
+
     private String[] splitInput(String input) {
         return input.split("");
     }
