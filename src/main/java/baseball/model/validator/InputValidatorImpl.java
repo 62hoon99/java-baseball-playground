@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 public class InputValidatorImpl implements InputValidator {
 
     private final String NATURAL_NUMBERS_MESSAGE = "각 자리는 자연수로만 이루어져야 합니다.";
-
     private final String DISTINCT_INPUT_MESSAGE = "서로 다른 수로 이루어져야 합니다.";
+    private final String THREE_INPUT_MESSAGE = "3자리 수로 이루어져야 합니다.";
 
     @Override
     public void validateNaturalNumbers(String input) {
@@ -43,7 +43,9 @@ public class InputValidatorImpl implements InputValidator {
 
     @Override
     public void validateThreeInput(String input) {
-
+        if (input.length() != 3) {
+            throw new IllegalArgumentException(THREE_INPUT_MESSAGE);
+        }
     }
 
     private String[] splitInput(String input) {
