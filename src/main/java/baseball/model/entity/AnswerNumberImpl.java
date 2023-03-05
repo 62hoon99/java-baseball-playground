@@ -45,7 +45,18 @@ public class AnswerNumberImpl implements AnswerNumber {
 
     @Override
     public Integer countBalls(String number) {
-        return null;
+        String[] answerNumbers = splitInput(answerNumber);
+        String[] numbers = splitInput(number);
+
+        return (int) IntStream.range(0, limit)
+                .filter(i -> isBall(numbers[i], i, answerNumbers))
+                .count();
+    }
+
+    private boolean isBall(String str, int index, String[] stringArr) {
+
+        return IntStream.range(0, limit)
+                .anyMatch(i -> i != index && stringArr[i].equals(str));
     }
 
     @Override
