@@ -13,6 +13,10 @@ public class OutputView {
         System.out.println(outputMessage);
     }
 
+    public void exception(String outputMessage) {
+        System.out.println(outputMessage);
+    }
+
     private String ballsToString(Integer balls) {
         if (balls > 0) {
             return balls + "볼 ";

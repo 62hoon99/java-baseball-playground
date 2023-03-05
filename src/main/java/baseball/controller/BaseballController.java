@@ -20,9 +20,19 @@ public class BaseballController {
     }
 
     public void start() {
-        String numbers = inputView.number();
-        baseballService.validateInputValue(numbers);
-        BaseballGameResultDto gameResult = baseballService.getGameResult(numbers);
-        outputView.result(gameResult);
+        while (true) {
+            try {
+                String numbers = inputView.number();
+                baseballService.validateInputValue(numbers);
+                BaseballGameResultDto gameResult = baseballService.getGameResult(numbers);
+                outputView.result(gameResult);
+
+                if (gameResult.getComplete()) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                outputView.exception(e.getMessage());
+            }
+        }
     }
 }
