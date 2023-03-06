@@ -9,6 +9,7 @@ public class InputValidatorImpl implements InputValidator {
     private final String NATURAL_NUMBERS_MESSAGE = "각 자리는 자연수로만 이루어져야 합니다.";
     private final String DISTINCT_INPUT_MESSAGE = "서로 다른 수로 이루어져야 합니다.";
     private final String THREE_INPUT_MESSAGE = "3자리 수로 이루어져야 합니다.";
+    private final String ONE_OR_TWO_MESSAGE = "입력은 1 또는 2만 가능합니다.";
 
     @Override
     public void validateNaturalNumbers(String input) {
@@ -45,6 +46,13 @@ public class InputValidatorImpl implements InputValidator {
     public void validateThreeInput(String input) {
         if (input.length() != 3) {
             throw new IllegalArgumentException(THREE_INPUT_MESSAGE);
+        }
+    }
+
+    @Override
+    public void validateOneOrTwo(String input) {
+        if (!input.equals("1") && !input.equals("2")) {
+            throw new IllegalArgumentException(ONE_OR_TWO_MESSAGE);
         }
     }
 

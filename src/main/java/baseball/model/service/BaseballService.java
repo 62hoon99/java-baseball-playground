@@ -9,4 +9,6 @@ public interface BaseballService {
     BaseballGameResultDto getGameResult(String input);
 
     void resetAnswerNumber();
+
+    void validateRetryInput(String input);
 }

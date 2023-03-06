@@ -45,6 +45,13 @@ public class BaseballController {
     private void retry() {
         String retry = inputView.retry();
 
+        try {
+            baseballService.validateRetryInput(retry);
+        } catch (NumberFormatException e) {
+            outputView.exception(e.getMessage());
+            retry();
+        }
+
         if (retry.equals("1")) {
             baseballService.resetAnswerNumber();
             start();

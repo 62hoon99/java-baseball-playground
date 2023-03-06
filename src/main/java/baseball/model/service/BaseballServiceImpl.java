@@ -36,4 +36,9 @@ public class BaseballServiceImpl implements BaseballService {
     public void resetAnswerNumber() {
         answerNumber.resetAnswerNumber();
     }
+
+    @Override
+    public void validateRetryInput(String input) {
+        inputValidator.validateOneOrTwo(input);
+    }
 }

@@ -7,4 +7,6 @@ public interface InputValidator {
     void validateDistinctInput(String input);
 
     void validateThreeInput(String input);
+
+    void validateOneOrTwo(String input);
 }
