@@ -20,20 +20,33 @@ public class BaseballController {
     }
 
     public void start() {
-        while (true) {
-            try {
-                String numbers = inputView.number();
-                baseballService.validateInputValue(numbers);
-                BaseballGameResultDto gameResult = baseballService.getGameResult(numbers);
-                outputView.result(gameResult);
+        try {
+            String numbers = inputView.number();
+            baseballService.validateInputValue(numbers);
+            BaseballGameResultDto gameResult = baseballService.getGameResult(numbers);
+            outputView.result(gameResult);
+            end(gameResult.getComplete());
+        } catch (IllegalArgumentException e) {
+            outputView.exception(e.getMessage());
+            start();
+        }
+    }
 
-                if (gameResult.getComplete()) {
-                    outputView.complete();
-                    break;
-                }
-            } catch (IllegalArgumentException e) {
-                outputView.exception(e.getMessage());
-            }
+    private void end(Boolean complete) {
+        if (complete) {
+            retry();
+        }
+
+        if (!complete) {
+            start();
+        }
+    }
+
+    private void retry() {
+        String retry = inputView.retry();
+
+        if (retry.equals("1")) {
+            start();
         }
     }
 }
