@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class AnswerNumberImpl implements AnswerNumber {
 
-    private final String answerNumber;
+    private String answerNumber;
 
     private final Integer limit = 3;
 
@@ -73,6 +73,11 @@ public class AnswerNumberImpl implements AnswerNumber {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void resetAnswerNumber() {
+        this.answerNumber = generateRandomNumber();
     }
 
     private String[] splitInput(String input) {

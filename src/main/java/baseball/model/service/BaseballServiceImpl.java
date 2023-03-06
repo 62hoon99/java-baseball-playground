@@ -31,4 +31,9 @@ public class BaseballServiceImpl implements BaseballService {
 
         return new BaseballGameResultDto(strikes, balls, nothing, complete);
     }
+
+    @Override
+    public void resetAnswerNumber() {
+        answerNumber.resetAnswerNumber();
+    }
 }

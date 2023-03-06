@@ -9,4 +9,6 @@ public interface AnswerNumber {
     Boolean isNothing(String number);
 
     Boolean isComplete(String number);
+
+    void resetAnswerNumber();
 }

@@ -46,6 +46,7 @@ public class BaseballController {
         String retry = inputView.retry();
 
         if (retry.equals("1")) {
+            baseballService.resetAnswerNumber();
             start();
         }
     }

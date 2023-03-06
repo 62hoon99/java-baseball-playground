@@ -7,4 +7,6 @@ public interface BaseballService {
     void validateInputValue(String input);
 
     BaseballGameResultDto getGameResult(String input);
+
+    void resetAnswerNumber();
 }
