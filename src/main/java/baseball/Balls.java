@@ -1,13 +1,22 @@
 package baseball;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Balls {
 
     private List<Ball> balls;
 
-    public Balls(List<Ball> balls) {
-        this.balls = balls;
+    public Balls(List<Integer> nums) {
+        this.balls = mapBalls(nums);
+    }
+
+    private List<Ball> mapBalls(List<Integer> nums) {
+        List<Ball> newBalls = new ArrayList<>();
+        for (int i = 0; i < nums.size(); i++) {
+            newBalls.add(new Ball(nums.get(i), i + 1));
+        }
+        return newBalls;
     }
 
     public BaseBallStatus result(Ball ball) {
