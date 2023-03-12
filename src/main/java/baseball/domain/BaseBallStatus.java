@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 public enum BaseBallStatus {
     STRIKE, BALL, NOTHING;

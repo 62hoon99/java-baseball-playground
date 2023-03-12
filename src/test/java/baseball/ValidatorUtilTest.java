@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static baseball.ValidatorUtil.*;
+import static baseball.domain.ValidatorUtil.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class ValidatorUtilTest {
