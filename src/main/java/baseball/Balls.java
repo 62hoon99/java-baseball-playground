@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Balls {
 
-    private List<Ball> balls;
+    private final List<Ball> balls;
 
     public Balls(List<Integer> nums) {
         this.balls = mapBalls(nums);
