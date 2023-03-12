@@ -1,5 +1,10 @@
 package baseball;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class ValidatorUtil {
 
     public static boolean validRange(int num) {
@@ -13,5 +18,14 @@ public class ValidatorUtil {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public static boolean validLength(String s) {
+        return s.length() == 3;
+    }
+
+    public static boolean validDupli(List<Integer> nums) {
+        Set<Integer> set = new HashSet<>(nums);
+        return set.size() == nums.size();
     }
 }
